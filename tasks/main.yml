@@ -1,0 +1,30 @@
+---
+
+- name: Include OS Family vars
+  include_vars: "{{ansible_os_family}}.yml"
+  tags: always
+
+- include: user.yml
+  sudo: true
+  when: consul_create_user
+  tags: consul_user
+
+- include: dirs.yml
+  sudo: true
+  tags: consul_dirs
+
+- include: install.yml
+  sudo: true
+  tags: consul_install
+
+- include: config.yml
+  sudo: true
+  tags: consul_config
+
+#- service:
+#    name: consul
+#    enabled: yes
+#    state: started
+#  when: consul_start_at_boot
+
+# vi:ts=2:sw=2:et:ft=yaml

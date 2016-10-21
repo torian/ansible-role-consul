@@ -1,0 +1,41 @@
+---
+
+- include: install/Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- include: install/RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Consul package stat
+  stat:
+    path: "{{consul_package_dest}}/{{consul_package}}"
+  register: consul_pkg_stat
+
+- name: DEBUG
+  debug:
+    msg: "{{consul_package_dest}}/{{consul_package}}\n{{consul_pkg_stat}}"
+
+- name: Download Consul Package
+  get_url:
+    url: "{{consul_url}}"
+    dest: "{{consul_package_dest}}"
+    mode: "0644"
+  when: not consul_pkg_stat.stat.exists
+
+- name: Extract Consul binary
+  unarchive:
+    copy: no
+    creates: "{{consul_dest}}/consul"
+    src: "{{consul_package_dest}}/{{consul_package}}"
+    dest: "{{consul_dest}}"
+    owner: "{{consul_user}}"
+    group: "{{consul_group}}"
+    mode: "0750"
+
+- name: Symlink Consul binary
+  file:
+    state: link
+    src: "{{consul_dest}}/consul"
+    dest: "{{consul_bin}}"
+
+# vi:ts=2:sw=2:et:ft=yaml

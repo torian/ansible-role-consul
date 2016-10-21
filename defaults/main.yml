@@ -1,0 +1,38 @@
+---
+
+# Consul user and group
+consul_user:  consul
+consul_group: consul
+
+# Create the consul user and group
+consul_create_user: true
+
+consul_version: 0.7.0
+
+consul_bin:  /usr/local/bin/consul
+consul_dest: "/opt/consul/{{consul_version}}"
+
+consul_arch:     "{{ (ansible_architecture == 'x86_64') | ternary('amd64', 'i386') }}"
+consul_package:  "consul_{{consul_version}}_linux_{{consul_arch}}.zip"
+consul_base_url: "https://releases.hashicorp.com/consul/{{consul_version}}"
+consul_url:      "{{consul_base_url}}/{{consul_package}}"
+consul_package_dest: /usr/local/src
+
+# UI package
+consul_ui_package: "consul_{{consul_version}}_web_ui.zip"
+consul_ui_url:     "{{consul_base_url}}/{{consul_ui_package}}"
+consul_ui_package_dest: "{{consul_package_dest}}"
+
+consul_ui_dir: /opt/consul/ui
+
+consul_ui_enabled: false
+
+# Start consul at boot time
+#
+consul_start_at_boot: True
+
+consul_config_dir: /etc/consul.d
+consul_data_dir: /var/consul
+
+# vi:ts=2:sw=2:et:ft=yaml
+
