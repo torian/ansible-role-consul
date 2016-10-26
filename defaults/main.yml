@@ -12,6 +12,12 @@ consul_version: 0.7.0
 consul_bin:  /usr/local/bin/consul
 consul_dest: "/opt/consul/{{consul_version}}"
 
+# get_url validate_certs
+# In case you are running on an old python version
+# you might want to toggle this to false if you get
+# an error like 'Failed to validate the SSL certificate'
+consul_download_validate_certs: true
+
 consul_arch:     "{{ (ansible_architecture == 'x86_64') | ternary('amd64', 'i386') }}"
 consul_package:  "consul_{{consul_version}}_linux_{{consul_arch}}.zip"
 consul_base_url: "https://releases.hashicorp.com/consul/{{consul_version}}"
