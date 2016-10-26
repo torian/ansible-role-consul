@@ -5,20 +5,20 @@
   tags: always
 
 - include: user.yml
-  sudo: true
   when: consul_create_user
   tags: consul_user
 
 - include: dirs.yml
-  sudo: true
   tags: consul_dirs
 
 - include: install.yml
-  sudo: true
   tags: consul_install
 
+- include: ui.yml
+  when: consul_ui_enabled
+  tags: consul_ui
+
 - include: config.yml
-  sudo: true
   tags: consul_config
 
 #- service:
