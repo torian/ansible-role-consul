@@ -1,0 +1,14 @@
+---
+
+- name: Consul Configuration
+  template:
+    src: etc/consul.d/config.json.j2
+    dest: "{{consul_config_dir}}/{{item.key}}.json"
+    owner: "{{consul_user}}"
+    group: "{{consul_group}}"
+    mode: "0644"
+    #validate: "{{consul_bin}} configtest -config-dir {{consul_config_dir}}"
+  with_dict: "{{consul_config}}"
+  #notify: consul restart
+
+# vi:ts=2:sw=2:et:ft=yaml

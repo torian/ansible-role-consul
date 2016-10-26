@@ -34,5 +34,24 @@ consul_start_at_boot: True
 consul_config_dir: /etc/consul.d
 consul_data_dir: /var/consul
 
+# Consul config
+# consul_config is a hash where the item key represents the
+# config file name, and it's value is a json block (without the
+# main curly brackets). This allows for flexible configuration
+# like:
+#
+# consul_config:
+#   00_service: |
+#     "server": true,
+#     "domain": "test",
+#     "datacenter": "vagrant"
+#
+#   01_service_ui: |
+#     "ui_dir": "{{consul_ui_dir}}"
+#
+#
+consul_config: {}
+
+
 # vi:ts=2:sw=2:et:ft=yaml
 
