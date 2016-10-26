@@ -1,0 +1,26 @@
+---
+
+- name: Defaults
+  hosts: localhost
+  remote_user: root
+
+  vars:
+    - consul_download_validate_certs: false
+    - consul_ui_enabled: true
+    - consul_config:
+        00_service: |
+          "server": true,
+          "bootstrap_expect": 1,
+          "domain": "test",
+          "datacenter": "vagrant",
+          "bind_addr": "{{ansible_default_ipv4.address}}",
+          "log_level": "info",
+          "enable_syslog": true
+
+        01_service_ui: |
+          "ui_dir": "{{consul_ui_dir}}"
+
+  roles:
+    - role: ansible-role-consul
+
+# vi:ts=2:sw=2:et:ft=yaml
