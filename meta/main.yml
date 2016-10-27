@@ -17,8 +17,9 @@ galaxy_info:
         - trusty
     - name: Amazon Linux
 
-  categories:
+  galaxy_tags:
     - monitoring
+    - networking
     - system
 
 dependencies: []
