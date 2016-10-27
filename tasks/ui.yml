@@ -1,5 +1,13 @@
 ---
 
+- name: Consul Web UI Directory
+  file:
+    state: directory
+    name: "{{consul_ui_dir}}"
+    owner: "{{consul_user}}"
+    group: "{{consul_group}}"
+    mode: "0750"
+
 - name: Consul UI package stat
   stat:
     path: "{{consul_ui_package_dest}}/{{consul_ui_package}}"
@@ -16,7 +24,6 @@
 - name: Extract Consul UI
   unarchive:
     copy: no
-    #creates: "{{consul_dest}}/consul"
     src: "{{consul_ui_package_dest}}/{{consul_ui_package}}"
     dest: "{{consul_ui_dir}}"
     owner: "{{consul_user}}"
