@@ -7,15 +7,20 @@
   vars:
     - consul_download_validate_certs: false
     - consul_ui_enabled: true
+    - consul_data_dir: /var/consul
     - consul_config:
         00_service: |
           "server": true,
+          "data_dir": "{{consul_data_dir}}",
           "bootstrap_expect": 1,
           "domain": "test",
           "datacenter": "vagrant",
           "bind_addr": "{{ansible_default_ipv4.address}}",
           "log_level": "info",
-          "enable_syslog": true
+          "enable_syslog": true,
+          "addresses": {
+            "http": "0.0.0.0"
+          }
 
         01_service_ui: |
           "ui_dir": "{{consul_ui_dir}}"

@@ -7,8 +7,8 @@
     owner: "{{consul_user}}"
     group: "{{consul_group}}"
     mode: "0644"
-    #validate: "{{consul_bin}} configtest -config-dir {{consul_config_dir}}"
+    #validate: "{{consul_bin}} configtest -config-file {{consul_config_dir}}/%s"
   with_dict: "{{consul_config}}"
-  #notify: consul restart
+  notify: consul reload
 
 # vi:ts=2:sw=2:et:ft=yaml

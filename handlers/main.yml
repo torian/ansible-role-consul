@@ -1,0 +1,27 @@
+---
+
+- name: consul start
+  service:
+    name: consul
+    state: started
+  tags: consul_start
+
+- name: consul stop
+  service:
+    name: consul
+    state: stopped
+  tags: consul_stop
+
+- name: consul restart
+  service:
+    name: consul
+    state: restarted
+  tags: consul_restart
+
+- name: consul reload
+  service:
+    name: consul
+    state: reloaded
+  tags: consul_reload
+
+# vi:ts=2:sw=2:et:ft=yaml
