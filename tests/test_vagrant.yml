@@ -8,6 +8,7 @@
     - consul_download_validate_certs: false
     - consul_ui_enabled: true
     - consul_data_dir: /var/consul
+    - consul_daemon_options: "-rejoin"
     - consul_config:
         00_service: |
           "server": true,

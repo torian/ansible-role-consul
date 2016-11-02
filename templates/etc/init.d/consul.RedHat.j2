@@ -30,6 +30,7 @@ pidfile="/var/run/$prog.pid"
 lockfile="/var/lock/subsys/$prog"
 logfile="/var/log/$prog"
 confdir="{{consul_config_dir}}"
+DAEMON_ARGS="agent -config-dir=$confdir "
 
 # pull in sysconfig settings
 [ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
@@ -55,7 +56,7 @@ start() {
     daemon \
         --pidfile=$pidfile \
         --user=consul \
-        " { $exec agent -config-dir=$confdir &>> $logfile & } ; echo \$! >| $pidfile "
+        " { $exec ${DAEMON_ARGS} ${CONSUL_OPTS} &>> $logfile & } ; echo \$! >| $pidfile "
     
     RETVAL=$?
     echo

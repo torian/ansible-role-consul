@@ -1,5 +1,14 @@
 ---
 
+- name: Consul service options file
+  template:
+    src: "etc/{{consul_daemon_options_dirname}}/consul.j2"
+    dest: "/etc/{{consul_daemon_options_dirname}}/consul"
+    owner: "{{consul_user}}"
+    group: "{{consul_group}}"
+    mode: "0644"
+  notify: consul restart
+
 - name: Consul Configuration
   template:
     src: etc/consul.d/config.json.j2
@@ -9,6 +18,6 @@
     mode: "0644"
     #validate: "{{consul_bin}} configtest -config-file {{consul_config_dir}}/%s"
   with_dict: "{{consul_config}}"
-  notify: consul reload
+  notify: consul restart
 
 # vi:ts=2:sw=2:et:ft=yaml

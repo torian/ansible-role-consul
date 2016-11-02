@@ -17,7 +17,7 @@ PATH=/usr/sbin:/usr/bin:/sbin:/bin
 DESC="Consul service discovery framework"
 NAME=consul
 DAEMON={{consul_bin}}
-DAEMON_ARGS="agent -config-dir {{consul_config_dir}}"
+DAEMON_ARGS="agent -config-dir={{consul_config_dir}}"
 USER={{consul_user}}
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
@@ -60,7 +60,7 @@ do_start()
       --chuid $USER \
       --background \
       --make-pidfile -- \
-        $DAEMON_ARGS \
+        $DAEMON_ARGS ${CONSUL_OPTS} \
         || return 2
 
     echo -n "Waiting for consul daemon to be listening..."

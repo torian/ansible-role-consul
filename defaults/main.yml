@@ -40,6 +40,11 @@ consul_start_at_boot: True
 consul_config_dir: /etc/consul.d
 consul_data_dir: /var/consul
 
+# Daemon options to be passed through consul options file
+# (/etc/default/consul or /etc/sysconfig/consul)
+#
+#consul_daemon_options: "-join some.server.bar"
+
 # Consul config
 # consul_config is a hash where the item key represents the
 # config file name, and it's value is a json block (without the
@@ -57,7 +62,6 @@ consul_data_dir: /var/consul
 #
 #
 consul_config: {}
-
 
 # vi:ts=2:sw=2:et:ft=yaml
 
