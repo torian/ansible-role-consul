@@ -2,7 +2,7 @@
 
 - name: Consul service options file
   template:
-    src: "etc/{{consul_daemon_options_dirname}}/consul.j2"
+    src: "etc/consul-daemon-options.j2"
     dest: "/etc/{{consul_daemon_options_dirname}}/consul"
     owner: "{{consul_user}}"
     group: "{{consul_group}}"
