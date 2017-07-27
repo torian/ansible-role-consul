@@ -7,7 +7,7 @@ consul_group: consul
 # Create the consul user and group
 consul_create_user: true
 
-consul_version: 0.7.0
+consul_version: 0.9.0
 
 consul_bin:  /usr/local/bin/consul
 consul_dest: "/opt/consul/{{consul_version}}"
@@ -64,4 +64,3 @@ consul_data_dir: /var/consul
 consul_config: {}
 
 # vi:ts=2:sw=2:et:ft=yaml
-
