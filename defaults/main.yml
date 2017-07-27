@@ -31,7 +31,7 @@ consul_ui_package_dest: "{{consul_package_dest}}"
 
 consul_ui_dir: /opt/consul/ui
 
-consul_ui_enabled: false
+consul_legacy_ui_enabled: false
 
 # Start consul at boot time
 #

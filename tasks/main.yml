@@ -15,8 +15,8 @@
   tags: consul_install
 
 - include: ui.yml
-  when: consul_ui_enabled
-  tags: consul_ui
+  when: consul_legacy_ui_enabled
+  tags: consul_legacy_ui
 
 - include: config.yml
   tags: consul_config
