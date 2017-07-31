@@ -1,12 +1,13 @@
 ---
 
-- name: Defaults
+- name: Defaults legacy
   hosts: all
   sudo: yes
 
   vars:
     - consul_download_validate_certs: false
-    - consul_ui_enabled: true
+    - consul_version: 0.7.0
+    - consul_legacy_ui_enabled: true
     - consul_data_dir: /var/consul
     - consul_daemon_options: "-rejoin"
     - consul_config:
@@ -29,7 +30,38 @@
 
   roles:
     - {
-        role: ansible-role-consul, sudo: true
+        role: ansible-role-consul, become: true
       }
+
+- name: Defaults
+  hosts: all
+  sudo: yes
+
+  vars:
+    - consul_download_validate_certs: false
+    - consul_data_dir: /var/consul
+    - consul_daemon_options: "-rejoin"
+    - consul_config:
+        00_service: |
+          "server": true,
+          "ui": true,
+          "data_dir": "{{consul_data_dir}}",
+          "bootstrap_expect": 1,
+          "domain": "test",
+          "datacenter": "vagrant",
+          "bind_addr": "{{ansible_default_ipv4.address}}",
+          "log_level": "info",
+          "enable_syslog": true,
+          "addresses": {
+            "http": "0.0.0.0"
+          }
+
+        01_service_ui: ''
+
+  roles:
+    - {
+        role: ansible-role-consul, become: true
+      }
+
 
 # vi:ts=2:sw=2:et:ft=yaml
