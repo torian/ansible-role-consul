@@ -1,5 +1,9 @@
 # Changelog
 
+## 2017-08-16: 0.9.1:
+
+  - Toggle to start consul when running the playbook (defaults to true)
+
 ## 2017-07-31: 0.9.0:
 
   - Deprecated `consul_ui`, moved to `consul_ui_legacy` for backward compat.
