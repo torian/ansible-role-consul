@@ -4,6 +4,7 @@
   service:
     name: consul
     state: started
+  when: consul_started
   tags: consul_start
 
 - name: consul stop
@@ -16,12 +17,14 @@
   service:
     name: consul
     state: restarted
+  when: consul_started
   tags: consul_restart
 
 - name: consul reload
   service:
     name: consul
     state: reloaded
+  when: consul_started
   tags: consul_reload
 
 # vi:ts=2:sw=2:et:ft=yaml

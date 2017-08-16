@@ -35,7 +35,13 @@ consul_legacy_ui_enabled: false
 
 # Start consul at boot time
 #
-consul_start_at_boot: True
+consul_start_at_boot: true
+
+# The following toggle will start consul on a plabook execution
+# or prevent it (even handlers).
+# This might turn handy when building images that should have a
+# clean start (nothing in the data dir)
+consul_started: true
 
 consul_config_dir: /etc/consul.d
 consul_data_dir: /var/consul
