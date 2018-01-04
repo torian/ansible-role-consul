@@ -20,4 +20,13 @@
   with_dict: "{{consul_config}}"
   notify: consul restart
 
+- name: Consul Logrotate configuration
+  template:
+    src: "etc/logrotate.d/consul.j2"
+    dest: "/etc/logrotate.d/consul"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  when: consul_logrotate_enabled
+
 # vi:ts=2:sw=2:et:ft=yaml

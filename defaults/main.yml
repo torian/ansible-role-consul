@@ -43,6 +43,19 @@ consul_start_at_boot: true
 # clean start (nothing in the data dir)
 consul_started: true
 
+# Disable by default the installation of consul's logrotate config file
+consul_logrotate_enabled: false
+consul_logrotate_config: |
+  /var/log/consul.log {
+    create 0644 {{consul_user}} {{consul_group}}
+    daily
+    rotate 7
+    delaycompress
+    compress
+    missingok
+    notifempty
+  }
+
 consul_config_dir: /etc/consul.d
 consul_data_dir: /var/consul
 
