@@ -21,9 +21,9 @@
   notify: consul restart
 
 - name: Consul Logrotate configuration
-  template:
-    src: "etc/logrotate.d/consul.j2"
+  copy:
     dest: "/etc/logrotate.d/consul"
+    contents: "{{consul_logrotate_config}}"
     owner: "root"
     group: "root"
     mode: "0644"
