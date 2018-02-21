@@ -23,7 +23,7 @@
 - name: Consul Logrotate configuration
   copy:
     dest: "/etc/logrotate.d/consul"
-    contents: "{{consul_logrotate_config}}"
+    content: "{{consul_logrotate_config}}"
     owner: "root"
     group: "root"
     mode: "0644"
