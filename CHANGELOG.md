@@ -1,5 +1,10 @@
 # Changelog
 
+## 2018-02-21: 0.9.2:
+
+  - Add logrotate configuration using `consul_logrotate_config` var, and
+    enabled with `consul_logrotate_enabled`
+
 ## 2017-08-16: 0.9.1:
 
   - Toggle to start consul when running the playbook (defaults to true)
