@@ -46,10 +46,11 @@ consul_started: true
 # Disable by default the installation of consul's logrotate config file
 consul_logrotate_enabled: false
 consul_logrotate_config: |
-  /var/log/consul.log {
+  /var/log/consul {
     create 0644 {{consul_user}} {{consul_group}}
     daily
     rotate 7
+    copytruncate
     delaycompress
     compress
     missingok
