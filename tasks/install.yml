@@ -1,10 +1,9 @@
 ---
 
-- include: install/Debian.yml
-  when: ansible_os_family == 'Debian'
-
-- include: install/RedHat.yml
-  when: ansible_os_family == 'RedHat'
+- name: Install Consul dependencies (Debian)
+  package:
+    name: "{{item}}"
+  with_items: "{{consul_packages}}"
 
 - name: Consul package stat
   stat:
