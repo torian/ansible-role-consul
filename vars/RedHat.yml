@@ -5,4 +5,7 @@ consul_packages:
 
 consul_daemon_options_dirname: sysconfig
 
+consul_systemd_prefix: /lib/systemd/system
+consul_pidfile_prefix: /run
+
 # vi:ts=2:sw=2:et:ft=yaml

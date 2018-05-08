@@ -1,0 +1,16 @@
+[Unit]
+Description=Hashicorp Consul
+After=syslog.target network.target
+
+[Service]
+Type=simple
+PIDFile={{consul_pidfile_prefix}}/consul.pid
+User=consul
+Group=consul
+EnvironmentFile=/etc/{{consul_daemon_options_dirname}}/consul
+ExecStartPre={{consul_bin}} validate {{consul_config_dir}} 
+ExecStart={{consul_bin}} agent -config-dir={{consul_config_dir}} ${CONSUL_OPTS}
+ExecStop={{consul_bin}} leave
+
+[Install]
+WantedBy=multi-user.target

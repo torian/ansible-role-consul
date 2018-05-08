@@ -21,6 +21,9 @@
 - include: config.yml
   tags: consul_config
 
+- include: systemd.yml
+  when: consul_systemd
+
 - name: Consul Init Script
   template:
     src: "etc/init.d/consul.{{ansible_os_family}}.j2"
@@ -28,6 +31,7 @@
     owner: root
     group: root
     mode: "0755"
+  when: not consul_systemd
   tags: consul_initscript
 
 - name: Enable Consul at boot

@@ -38,6 +38,7 @@
   sudo: yes
 
   vars:
+    - consul_systemd: true
     - consul_download_validate_certs: false
     - consul_data_dir: /var/consul
     - consul_daemon_options: "-rejoin"

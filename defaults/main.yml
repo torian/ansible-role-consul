@@ -46,6 +46,11 @@ consul_start_at_boot: true
 # clean start (nothing in the data dir)
 consul_started: true
 
+# SystemD service file
+# Enable systemd
+consul_systemd: false
+
+
 # Disable by default the installation of consul's logrotate config file
 consul_logrotate_enabled: false
 consul_logrotate_config: |
