@@ -6,7 +6,7 @@
 
   vars:
     - consul_download_validate_certs: false
-    - consul_version: 0.7.0
+    - consul_version: 0.8.0
     - consul_legacy_ui_enabled: true
     - consul_data_dir: /var/consul
     - consul_daemon_options: "-rejoin"

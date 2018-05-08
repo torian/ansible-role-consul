@@ -2,23 +2,25 @@
 
 - name: Consul service options file
   template:
-    src: "etc/consul-daemon-options.j2"
-    dest: "/etc/{{consul_daemon_options_dirname}}/consul"
+    src:   "etc/consul-daemon-options.j2"
+    dest:  "/etc/{{consul_daemon_options_dirname}}/consul"
     owner: "{{consul_user}}"
     group: "{{consul_group}}"
-    mode: "0644"
+    mode:  "0644"
   notify: consul restart
 
 - name: Consul Configuration
   template:
-    src: etc/consul.d/config.json.j2
-    dest: "{{consul_config_dir}}/{{item.key}}.json"
+    src:   "etc/consul.d/config.{{consul_config_ext}}.j2"
+    dest:  "{{consul_config_dir}}/{{item.key}}.{{consul_config_ext}}"
     owner: "{{consul_user}}"
     group: "{{consul_group}}"
-    mode: "0644"
+    mode:  "0644"
     #validate: "{{consul_bin}} configtest -config-file {{consul_config_dir}}/%s"
   with_dict: "{{consul_config}}"
   notify: consul restart
+  loop_control:
+    label: "{{item.key}}"
 
 - name: Consul Logrotate configuration
   copy:

@@ -1,6 +1,6 @@
 VAGRANTFILE_API_VERSION = '2'
 
-ANSIBLE_VERSION = "2.3.0.0"
+ANSIBLE_VERSION = "2.5.0"
 
 ANSIBLE_ROLE = 'ansible-role-consul'
 
