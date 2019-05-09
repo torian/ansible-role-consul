@@ -17,6 +17,9 @@
     dest: "{{consul_package_dest}}"
     mode: "0644"
     validate_certs: "{{consul_download_validate_certs}}"
+    checksum: >
+      {{ (consul_checksum_validation) |
+      ternary(consul_checksums[consul_arch], omit) }}"
   when: not consul_pkg_stat.stat.exists
 
 - name: Extract Consul binary

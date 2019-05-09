@@ -23,6 +23,10 @@ consul_package:  "consul_{{consul_version}}_linux_{{consul_arch}}.zip"
 consul_base_url: "https://releases.hashicorp.com/consul/{{consul_version}}"
 consul_url:      "{{consul_base_url}}/{{consul_package}}"
 consul_package_dest: /usr/local/src
+consul_checksum_validation: true
+consul_checksums:
+  amd64: sha256:1399064050019db05d3378f757e058ec4426a917dd2d240336b51532065880b6
+  i386: sha256:1527714550b1c23385e54b12fc5853f0e33312a89165f9801c331d5b4ee69dbb
 
 # UI package
 consul_ui_package: "consul_{{consul_version}}_web_ui.zip"
