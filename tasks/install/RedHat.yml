@@ -3,8 +3,8 @@
 - name: Install Consul Dependencies (RedHat)
   yum:
     state: present
-    name: "{{item}}"
+    name: "{{ item }}"
     update_cache: yes
-  with_items: "{{consul_packages}}"
+  with_items: "{{ consul_packages }}"
 
 # vi:ts=2:sw=2:et:ft=yaml

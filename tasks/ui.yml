@@ -3,31 +3,31 @@
 - name: Consul Web UI Directory
   file:
     state: directory
-    name: "{{consul_ui_dir}}"
-    owner: "{{consul_user}}"
-    group: "{{consul_group}}"
+    name: "{{ consul_ui_dir }}"
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
     mode: "0750"
 
 - name: Consul UI package stat
   stat:
-    path: "{{consul_ui_package_dest}}/{{consul_ui_package}}"
+    path: "{{ consul_ui_package_dest }}/{{ consul_ui_package }}"
   register: consul_ui_pkg_stat
 
 - name: Download Consul UI Package
   get_url:
-    url: "{{consul_ui_url}}"
-    dest: "{{consul_ui_package_dest}}"
+    url: "{{ consul_ui_url }}"
+    dest: "{{ consul_ui_package_dest }}"
     mode: "0644"
-    validate_certs: "{{consul_download_validate_certs}}"
+    validate_certs: "{{ consul_download_validate_certs }}"
   when: not consul_ui_pkg_stat.stat.exists
 
 - name: Extract Consul UI
   unarchive:
     copy: no
-    src: "{{consul_ui_package_dest}}/{{consul_ui_package}}"
-    dest: "{{consul_ui_dir}}"
-    owner: "{{consul_user}}"
-    group: "{{consul_group}}"
+    src: "{{ consul_ui_package_dest }}/{{ consul_ui_package }}"
+    dest: "{{ consul_ui_dir }}"
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
     mode: "0750"
 
 # vi:ts=2:sw=2:et:ft=yaml

@@ -24,12 +24,12 @@
 . /etc/rc.d/init.d/functions
 
 prog="consul"
-user="{{consul_user}}"
-exec="{{consul_bin}}"
+user="{{ consul_user }}"
+exec="{{ consul_bin }}"
 pidfile="/var/run/$prog.pid"
 lockfile="/var/lock/subsys/$prog"
 logfile="/var/log/$prog"
-confdir="{{consul_config_dir}}"
+confdir="{{ consul_config_dir }}"
 DAEMON_ARGS="agent -config-dir=$confdir "
 
 # pull in sysconfig settings

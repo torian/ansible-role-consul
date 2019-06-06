@@ -1,7 +1,7 @@
 ---
 
 - name: Include OS Family vars
-  include_vars: "{{ansible_os_family}}.yml"
+  include_vars: "{{ ansible_os_family }}.yml"
   tags: always
 
 - include: user.yml
@@ -23,7 +23,7 @@
 
 - name: Consul Init Script
   template:
-    src: "etc/init.d/consul.{{ansible_os_family}}.j2"
+    src: "etc/init.d/consul.{{ ansible_os_family }}.j2"
     dest: /etc/init.d/consul
     owner: root
     group: root
@@ -34,7 +34,7 @@
   service:
     name: consul
     enabled: yes
-    state: "{{ (consul_started) | ternary('started', 'stopped')}}"
+    state: "{{  (consul_started) | ternary('started', 'stopped') }}"
   when: consul_start_at_boot
 
 # vi:ts=2:sw=2:et:ft=yaml

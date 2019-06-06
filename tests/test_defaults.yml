@@ -12,7 +12,7 @@
           "bootstrap_expect": 1,
           "domain": "test",
           "datacenter": "vagrant",
-          "bind_addr": "{{ansible_default_ipv4.address}}",
+          "bind_addr": "{{ ansible_default_ipv4.address }}",
           "log_level": "info",
           "enable_syslog": true
 

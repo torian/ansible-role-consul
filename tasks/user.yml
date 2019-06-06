@@ -3,14 +3,14 @@
 - name: Consul group
   group:
     state: present
-    name: "{{consul_group}}"
+    name: "{{ consul_group }}"
     system: yes
 
 - name: Consul user
   user:
     state: present
-    name: "{{consul_user}}"
-    group: "{{consul_group}}"
+    name: "{{ consul_user }}"
+    group: "{{ consul_group }}"
     comment: "Consul Service"
     shell: "/bin/nologin"
     system: yes
