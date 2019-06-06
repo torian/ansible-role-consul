@@ -3,27 +3,27 @@
 - name: Consul service options file
   template:
     src: "etc/consul-daemon-options.j2"
-    dest: "/etc/{{consul_daemon_options_dirname}}/consul"
-    owner: "{{consul_user}}"
-    group: "{{consul_group}}"
+    dest: "/etc/{{ consul_daemon_options_dirname }}/consul"
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
     mode: "0644"
   notify: consul restart
 
 - name: Consul Configuration
   template:
     src: etc/consul.d/config.json.j2
-    dest: "{{consul_config_dir}}/{{item.key}}.json"
-    owner: "{{consul_user}}"
-    group: "{{consul_group}}"
+    dest: "{{ consul_config_dir }}/{{ item.key }}.json"
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
     mode: "0644"
-    #validate: "{{consul_bin}} configtest -config-file {{consul_config_dir}}/%s"
-  with_dict: "{{consul_config}}"
+    #validate: "{{ consul_bin }} configtest -config-file {{ consul_config_dir }}/%s"
+  with_dict: "{{ consul_config }}"
   notify: consul restart
 
 - name: Consul Logrotate configuration
   copy:
     dest: "/etc/logrotate.d/consul"
-    content: "{{consul_logrotate_config}}"
+    content: "{{ consul_logrotate_config }}"
     owner: "root"
     group: "root"
     mode: "0644"
