@@ -2,8 +2,7 @@
 
 - name: Install Consul dependencies (Debian)
   package:
-    name: "{{item}}"
-  with_items: "{{consul_packages}}"
+    name: "{{consul_packages}}"
 
 - name: Consul package stat
   stat:

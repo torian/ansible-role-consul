@@ -1,0 +1,30 @@
+[Unit]
+Description=Hashicorp Consul
+Documentation=https://consul.io/docs/
+Wants={{ consul_systemd_unit_wants | default("network-online.target") }}
+After={{ consul_systemd_unit_after | default("network-online.target") }}
+
+[Service]
+SyslogIdentifier={{ consul_systemd_syslog_identifier | default("consul") }}
+User={{ consul_user }}
+Group={{ consul_group }}
+
+EnvironmentFile={{ consul_environment_file }}
+ExecStart={{ consul_bin }} agent -config-dir {{ consul_config_dir }}
+PIDFile=/run/consul.pid
+StartLimitBurst=5
+StartLimitIntervalSec=10
+Restart=on-failure
+RestartSec=2
+
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStop={{consul_bin}} leave
+KillMode=process
+KillSignal=SIGINT
+
+LimitNOFILE={{ consul_systemd_service_limitnofile | default(1024) }}
+LimitNPROC={{ consul_systemd_service_limitnproc | default("infinity") }}
+
+[Install]
+WantedBy=multi-user.target
+

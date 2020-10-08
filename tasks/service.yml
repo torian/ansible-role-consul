@@ -1,0 +1,19 @@
+---
+
+- name: Service file
+  template:
+    src:   consul.service.j2
+    dest:  /etc/systemd/system/consul.service
+    owner: root
+    group: root
+    mode:  "0644"
+  notify: consul service
+
+- name: Enable service
+  systemd:
+    name: consul
+    enabled: yes
+    daemon_reload: yes
+  when: consul_start_at_boot
+
+# vi:ts=2:sw=2:et:ft=yaml

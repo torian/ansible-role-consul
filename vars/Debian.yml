@@ -3,9 +3,6 @@
 consul_packages:
   - unzip
 
-consul_daemon_options_dirname: default
-
-consul_systemd_prefix: /lib/systemd/system
-consul_pidfile_prefix: /run
+consul_environment_file: /etc/default/consul
 
 # vi:ts=2:sw=2:et:ft=yaml

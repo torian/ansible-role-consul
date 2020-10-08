@@ -1,30 +1,25 @@
 ---
 
+- name: consul service
+  systemd:
+    name: consul
+    daemon_reload: yes
+
 - name: consul start
-  service:
+  systemd:
     name: consul
     state: started
   when: consul_started
-  tags: consul_start
-
-- name: consul stop
-  service:
-    name: consul
-    state: stopped
-  tags: consul_stop
 
 - name: consul restart
-  service:
+  systemd:
     name: consul
     state: restarted
   when: consul_started
-  tags: consul_restart
 
-- name: consul reload
-  service:
+- name: consul stop
+  systemd:
     name: consul
-    state: reloaded
-  when: consul_started
-  tags: consul_reload
+    state: stopped
 
 # vi:ts=2:sw=2:et:ft=yaml
